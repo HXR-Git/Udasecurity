@@ -64,8 +64,8 @@ public class SecurityServiceTest {
         sensor.setActive(true);
         Set<Sensor> sensors = new HashSet<>();
         sensors.add(sensor);
-        when(securityRepository.getSensors()).thenReturn(sensors);
         when(securityRepository.getAlarmStatus()).thenReturn(AlarmStatus.PENDING_ALARM);
+        when(securityRepository.getSensors()).thenReturn(sensors);
         securityService.changeSensorActivationStatus(sensor, false);
         verify(securityRepository).setAlarmStatus(AlarmStatus.NO_ALARM);
     }
@@ -114,7 +114,6 @@ public class SecurityServiceTest {
     @ParameterizedTest
     @EnumSource(value = AlarmStatus.class, names = {"ALARM", "PENDING_ALARM"})
     void systemDisarmed_always_setNoAlarm(AlarmStatus status) {
-        when(securityRepository.getAlarmStatus()).thenReturn(status);
         securityService.setArmingStatus(ArmingStatus.DISARMED);
         verify(securityRepository).setAlarmStatus(AlarmStatus.NO_ALARM);
     }

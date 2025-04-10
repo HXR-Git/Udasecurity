@@ -61,25 +61,25 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.7.0</version>
+            <version>${junit.version}</version> <!-- Align to 5.10.2 -->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>5.7.1</version>
+            <version>${junit.version}</version> <!-- Align to 5.10.2 -->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.6.28</version>
+            <version>${mockito.version}</version> <!-- Update to 5.11.0 -->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>3.6.28</version>
+            <version>${mockito.version}</version> <!-- Update to 5.11.0 -->
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -88,8 +88,13 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version> <!-- Latest stable -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.7.1</version> <!-- Updated to latest -->
                 <configuration>
                     <archive>
                         <manifest>
@@ -102,6 +107,7 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
